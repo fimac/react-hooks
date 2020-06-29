@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 
-function Square(props) {
+const Square = (props) => {
     return (
       <button className="square" onClick={props.onClick}>
         {props.value}
@@ -9,37 +9,36 @@ function Square(props) {
     );
   }
 
-class Board extends React.Component {
-    renderSquare(i) {
-      return (
-        <Square
-          value={this.props.squares[i]}
-          onClick={() => this.props.onClick(i)}
-        />
-      );
-    }
-  
-    render() {
+const Board = ({squares, onClick}) => {
+    const renderSquare = (i) => {
+        return (
+          <Square
+            value={squares[i]}
+            onClick={() => onClick(i)}
+          />
+        );
+      }
+
       return (
         <div>
           <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
+            {renderSquare(0)}
+            {renderSquare(1)}
+            {renderSquare(2)}
           </div>
           <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
+            {renderSquare(3)}
+            {renderSquare(4)}
+            {renderSquare(5)}
           </div>
           <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
+            {renderSquare(6)}
+            {renderSquare(7)}
+            {renderSquare(8)}
           </div>
         </div>
       );
-    }
-  }
 
-  export default Board;
+}
+
+export default Board;
